@@ -39,9 +39,11 @@ public class User {
     private String email;
 
     @NotNull
+    @Min(2)
     private String firstName;
 
     @NotNull
+    @Min(2)
     private String lastName;
 
     private String telephone;
