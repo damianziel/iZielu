@@ -37,18 +37,10 @@
     </h2>
     <form th:action="@{/addTour}" th:object="${tour}" method="post" class="form-horizontal">
 
-        <script type="text/javascript">
-            $(function() {
-                $('input[name=date]').datepicker({
-                format: 'dd-MM-yyyy'
-                });
-                });
-        </script>
-
         <div class="control-group">
             <label class="control-label">Date</label>
-            <div class="input-group date" data-provide="datepicker">
-                <input th:field="*{date}" name="date" th:value="${#date.format(date, 'dd-MM-yyyy')}"/>
+            <div class="input-picker" data-provide="datepicker">
+                <input th:field="*{date}" name="date" th:value="date"/>
                 <span class="help-inline" th:errors="*{date}">[error]</span>
             </div>
         </div>
@@ -80,6 +72,12 @@
             <input type="text" th:field="*{description}"/>
             <span class="help-inline" th:errors="*{description}">[error]</span>
         </div>
+        <div class="controls">
+            <label class="control-label">Hotel</label>
+            <select th:field="*{hotel}">
+                <option th:each="hotel : ${hotels}" th:text="${hotel}" th:value="${hotel.name}"></option>
+            </select>
+        </div>
 
         <div class="form-actions">
             <button th:if="${tour.isNew}" type="submit">Add Tour</button>
@@ -91,5 +89,16 @@
 <table th:replace="fragments/footer :: footer" class="footer">
 
 </table>
+
+<script type="text/javascript">
+            // When the document is ready
+            $(document).ready(function () {
+
+                $('.input-picket').datepicker({
+                    todayBtn: "linked"
+                });
+
+            });
+        </script>
 </body>
 </html>

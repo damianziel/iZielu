@@ -1,9 +1,7 @@
 package com.sda.iManu.web.controller;
 
 import com.sda.iManu.domain.Hotel;
-import com.sda.iManu.domain.Tour;
 import com.sda.iManu.service.impl.HotelService;
-import com.sda.iManu.service.impl.TourService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,37 +11,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 /**
  * Created by RENT on 2016-09-22.
  */
 @Controller
-public class TourController {
+public class HotelController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
     @SuppressWarnings("unused")
     @Autowired
-    private TourService tourService;
-
-    @Autowired
     private HotelService hotelService;
 
-
-    @RequestMapping(method = RequestMethod.GET, value= "/addTour")
-    public ModelAndView createTour() {
-        List<Hotel> hotels = hotelService.getAll();
-        return new ModelAndView("addTour")
-                .addObject("tour", new Tour())
-                .addObject("hotels", hotels);
+    @RequestMapping(method = RequestMethod.GET, value= "/addHotel")
+    public ModelAndView createHotel() {
+        return new ModelAndView("addHotel")
+                .addObject("hotel", new Hotel());
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value= "/addTour")
-    public ModelAndView handleNewTour(@ModelAttribute Tour tour) {
-        tourService.addTour(tour);
-        return new ModelAndView("addTour").addObject("isTourSaved", true);
+    @RequestMapping(method = RequestMethod.POST, value= "/addHotel")
+    public ModelAndView handleNewHotel(@ModelAttribute Hotel hotel) {
+        hotelService.addHotel(hotel);
+        return new ModelAndView("addHotel").addObject("isHotelSaved", true);
 //    }
     }
 }

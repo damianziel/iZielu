@@ -22,10 +22,8 @@ public class Hotel {
     @NotNull
     private String url;
 
+    private boolean isNew;
 
-    public Hotel(int id, String name, String url) {
-        this.id = id;
-        this.name = name;
-        this.url = url;
+    public Hotel() {
     }
 }

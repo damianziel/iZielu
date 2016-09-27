@@ -4,14 +4,14 @@ import com.sda.iManu.domain.Hotel;
 import com.sda.iManu.repository.HotelRepository;
 import com.sda.iManu.service.IHotelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by RENT on 2016-09-21.
  */
 @Service
-@Scope("session")
 public class HotelService implements IHotelService {
 
     @Autowired
@@ -25,6 +25,12 @@ public class HotelService implements IHotelService {
     @Override
     public void deleteHotel(int hotelId) {
         hotelRepository.delete(hotelId);
+    }
+
+    @Override
+    public List<Hotel> getAll() {
+        List<Hotel>hotelsList = hotelRepository.findAll();
+        return hotelsList;
     }
 
 }
