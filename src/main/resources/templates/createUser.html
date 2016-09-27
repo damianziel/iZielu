@@ -21,13 +21,22 @@
 </head>
 
 <body>
+
+<th:if test="${isUserSaved == true}">
+    <div style="border: solid 2px">
+        New user: <br/>
+        Name: ${user.firstName} <br/>
+        Typ: ${user.lastName} <br/>
+    </div>
+</th:if>
+
 <div class="container">
     <div th:replace="fragments/header :: 'header'"></div>
 
     <h2>
         <span th::if="${user.isNew}">New </span> User
     </h2>
-    <form  action="/createUser"  th:object="${user}" method="post" class="form-horizontal">
+    <form  th:action="@{/createUser}"  th:object="${user}" method="post" class="form-horizontal">
         <label class="control-label">First Name</label>
         <div class="controls">
             <input type="text" th:field="${user.firstName}"/>

@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 @Scope("session")
 public class HotelService implements IHotelService {
 
-    Hotel old;
-
     @Autowired
     HotelRepository hotelRepository;
 
@@ -26,7 +24,7 @@ public class HotelService implements IHotelService {
 
     @Override
     public void deleteHotel(int hotelId) {
-        hotelRepository.delete(String.valueOf(hotelId));
+        hotelRepository.delete(hotelId);
     }
 
 }

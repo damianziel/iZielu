@@ -10,11 +10,11 @@ import java.util.Date;
  * Created by RENT on 2016-09-21.
  */
 @Repository
-public interface TourRepository extends MongoRepository<Tour, String> {
+public interface TourRepository extends MongoRepository<Tour, Integer> {
 
     Tour findByType(String type);
-    Tour findByCountries(String countries);
-    Tour findByTourLength(int length);
+    Tour findByCountry(String country);
+    Tour findByDuration(int duration);
     Tour findByDate(Date date);
     Tour findByPrice(float price);
 

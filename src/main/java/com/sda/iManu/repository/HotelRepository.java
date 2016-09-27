@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  * Created by RENT on 2016-09-21.
  */
-public interface HotelRepository extends MongoRepository<Hotel, String> {
+public interface HotelRepository extends MongoRepository<Hotel, Integer> {
 
 }

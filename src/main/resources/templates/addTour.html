@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Security Example </title>
+
+    <script type="text/plain" src="/resources/js/jquery-3.1.0.min.js"
+            th:src="@{/resources/js/jquery-3.1.0.min.js}"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          crossorigin="anonymous"/>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<th:if test="${isTourSaved == true}">
+    <div style="border: solid 2px">
+        New tour: <br/>
+        Tour id: ${tour.id} <br/>
+    </div>
+</th:if>
+
+<div class="container">
+    <div th:replace="fragments/header :: 'header'"></div>
+
+    <h2>
+        <span th::if="${tour.isNew}">New </span> Tour
+    </h2>
+    <form th:action="@{/addTour}" th:object="${tour}" method="post" class="form-horizontal">
+
+        <script type="text/javascript">
+            $(function() {
+                $('input[name=date]').datepicker({
+                format: 'dd-MM-yyyy'
+                });
+                })
+
+        </script>
+
+        <div class="control-group">
+            <label class="control-label">Date</label>
+            <div class="input-group date" data-provide="datepicker">
+                <input th:field="*{date}" name="date" th:value="${#date.format(date, 'dd-MM-yyyy')}"/>
+                <span class="help-inline" th:errors="*{date}">[error]</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Type</label>
+            <select th:field="*{type}">
+                <option th:each="t : ${T(com.sda.iManu.domain.Type).values()}" th:text="${t}" th:value="${t}"></option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Country</label>
+            <select th:field="*{country}">
+                <option th:each="ctr : ${T(com.sda.iManu.domain.Country).values()}" th:text="${ctr}"
+                        th:value="${ctr}"></option>
+            </select>
+        </div>
+        <div class="controls">
+            <label class="control-label">Duration</label>
+            <input type="text" th:field="*{duration}"/>
+            <span class="help-inline" th:errors="*{duration}">[error]</span>
+        </div>
+        <div class="controls">
+            <label class="control-label">Capacity</label>
+            <input type="text" th:field="*{capacity}"/>
+            <span class="help-inline" th:errors="*{capacity}">[error]</span>
+        </div>
+        <div class="controls">
+            <label class="control-label">Description</label>
+            <input type="text" th:field="*{description}"/>
+            <span class="help-inline" th:errors="*{description}">[error]</span>
+        </div>
+
+        <div class="form-actions">
+            <button th:if="${tour.isNew}" type="submit">Add Tour</button>
+            <button th:unless="${tour.isNew}" type="submit">Update Tour</button>
+        </div>
+    </form>
+</div>
+
+<table th:replace="fragments/footer :: footer" class="footer">
+
+</table>
+</body>
+</html>

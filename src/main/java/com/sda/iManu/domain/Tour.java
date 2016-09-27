@@ -4,8 +4,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Temporal;
+import java.math.BigDecimal;
 import java.util.Date;
+
+import static javax.persistence.TemporalType.DATE;
+
 
 /**
  * Created by RENT on 2016-09-21.
@@ -16,16 +22,19 @@ import java.util.Date;
 public class Tour {
 
     Type type;
-    Countries countries;
+
+    Country country;
 
     @Id
     private int id;
 
     private String departurePort;
 
+    @Temporal(DATE)
+    @DateTimeFormat (pattern="dd-MM-YYYY")
     private Date date;
 
-    private int tourLength;
+    private int duration;
 
     private int capacity;
 
@@ -33,18 +42,10 @@ public class Tour {
 
     private Hotel hotel;
 
-    private float price;
+    private BigDecimal price;
 
-    public Tour(Type type, Countries countries, int id, String departurePort, Date date, int tourLength, int capacity, String description, Hotel hotel, float price) {
-        this.type = type;
-        this.countries = countries;
-        this.id = id;
-        this.departurePort = departurePort;
-        this.date = date;
-        this.tourLength = tourLength;
-        this.capacity = capacity;
-        this.description = description;
-        this.hotel = hotel;
-        this.price = price;
+    private Boolean isNew;
+
+    public Tour() {
     }
 }

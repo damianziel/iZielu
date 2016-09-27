@@ -21,22 +21,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.anonymous();
-//                .authorizeRequests()
-//                .antMatchers(
-//                        "/i18n/**",
-//                        "/index","/createUser"
-//                )
-//                .permitAll()
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .permitAll();
+        http
+                .authorizeRequests()
+                .antMatchers(
+                        "/i18n/**",
+                        "/index","/createUser", "/addTour"
+                )
+                .permitAll()
+//                .antMatchers("/addTour", "/addHotel").access("hasRole('ROLE_ADMIN')")
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
     }
 
     @Autowired

@@ -28,12 +28,10 @@ public class UserController {
         return new ModelAndView("createUser").addObject("user", new User());
     }
 
-    @RequestMapping(method = RequestMethod.POST, value= "/login")
+    @RequestMapping(method = RequestMethod.POST, value= "/createUser")
     public ModelAndView handleNewUser(@ModelAttribute User user) {
-        System.out.println(user.toString());
-//        User user = new User();
 //        userRepository.save(user, new BCryptPasswordEncoder().encode(user.getPassword()));
-        return new ModelAndView("login").addObject("user", user);
+        return new ModelAndView("createUser").addObject("isUserSaved", true);
 //    }
     }
 }

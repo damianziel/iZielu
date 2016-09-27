@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/iZielu.iml" filepath="$PROJECT_DIR$/.idea/modules/iZielu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/iZielu_main.iml" filepath="$PROJECT_DIR$/.idea/modules/iZielu_main.iml" group="iZielu" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/iZielu_test.iml" filepath="$PROJECT_DIR$/.idea/modules/iZielu_test.iml" group="iZielu" />
+    </modules>
+  </component>
+</project>
