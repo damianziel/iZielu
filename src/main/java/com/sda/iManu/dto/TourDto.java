@@ -1,16 +1,16 @@
-package com.sda.iManu.domain;
+package com.sda.iManu.dto;
 
+import com.sda.iManu.domain.Country;
+import com.sda.iManu.domain.Hotel;
+import com.sda.iManu.domain.Type;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Temporal;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import static javax.persistence.TemporalType.DATE;
 
 
 /**
@@ -19,11 +19,14 @@ import static javax.persistence.TemporalType.DATE;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Tour {
+public class TourDto {
 
     Type type;
 
     Country country;
+
+    @Id
+    private int id;
 
     private String departurePort;
 
@@ -42,6 +45,6 @@ public class Tour {
 
     private Boolean isNew;
 
-    public Tour() {
+    public TourDto() {
     }
 }

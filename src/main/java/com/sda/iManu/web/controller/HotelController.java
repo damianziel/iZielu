@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,9 +32,8 @@ public class HotelController {
 
 
     @RequestMapping(method = RequestMethod.POST, value= "/addHotel")
-    public ModelAndView handleNewHotel(@ModelAttribute Hotel hotel) {
+    public ModelAndView handleNewHotel(@ModelAttribute Hotel hotel,   BindingResult result) {
         hotelService.addHotel(hotel);
         return new ModelAndView("addHotel").addObject("isHotelSaved", true);
-//    }
     }
 }

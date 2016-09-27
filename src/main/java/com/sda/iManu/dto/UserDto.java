@@ -1,4 +1,4 @@
-package com.sda.iManu.domain;
+package com.sda.iManu.dto;
 
 
 import lombok.Getter;
@@ -17,27 +17,40 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Getter
 @ToString
-public class User {
+public class UserDto {
 
     @Id
     private String id;
 
+    @NotNull
+    @Min(5)
+    @Max(12)
+    @Indexed(unique = true)
     private String login;
 
+    @NotNull
+    @Min(5)
+    @Max(12)
     private String password;
 
     private boolean isAdmin;
 
+    @NotNull
     private String email;
 
+    @NotNull
+    @Min(2)
     private String firstName;
 
+    @NotNull
+    @Min(2)
     private String lastName;
 
+    @Min(7)
     private String telephone;
 
     private Boolean isNew;
 
-    public User() {
+    public UserDto() {
     }
 }

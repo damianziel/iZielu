@@ -19,8 +19,8 @@ public class TourService implements ITourService {
 
     @Override
     public boolean addTour(Tour tour) {
-        Tour savedTour = tourRepository.save(tour);
-        return savedTour != null;
+            Tour savedTour = tourRepository.save(tour);
+            return savedTour != null;
     }
 
     @Override

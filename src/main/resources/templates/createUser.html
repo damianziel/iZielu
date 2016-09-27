@@ -40,6 +40,7 @@
         <label class="control-label">First Name</label>
         <div class="controls">
             <input type="text" th:field="${user.firstName}"/>
+            <span class="help-inline" th:errors="*{firstName}">[error]</span>
         </div>
         <label class="control-label">Last Name</label>
         <div class="controls">
