@@ -21,14 +21,6 @@
 </head>
 
 <body>
-
-<th:if test="${isTourSaved == true}">
-    <div style="border: solid 2px">
-        New tour: <br/>
-        Tour id: ${tour.id} <br/>
-    </div>
-</th:if>
-
 <div class="container">
     <div th:replace="fragments/header :: 'header'"></div>
 
@@ -37,12 +29,11 @@
     </h2>
     <form th:action="@{/addTour}" th:object="${tour}" method="post" class="form-horizontal">
 
+
         <div class="control-group">
             <label class="control-label">Date</label>
-            <div class="input-picker" data-provide="datepicker">
-                <input th:field="*{date}" name="date" th:value="date"/>
-                <span class="help-inline" th:errors="*{date}">[error]</span>
-            </div>
+            <input th:field="*{date}" name="date" type="text" id="datepicker" th:value="date"/>
+            <span class="help-inline" th:errors="*{date}">[error]</span>
         </div>
         <div class="control-group">
             <label class="control-label">Type</label>
@@ -90,15 +81,10 @@
 <table th:replace="fragments/footer :: footer" class="footer">
 
 </table>
-
 <script type="text/javascript">
-            // When the document is ready
-            $(document).ready(function () {
-
-                $('.input-picker').datepicker({
-                });
-
-            });
-        </script>
+  function() {
+    $("#datepicker").datepicker();
+  }
+  </script>
 </body>
 </html>

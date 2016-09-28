@@ -21,56 +21,46 @@
 </head>
 
 <body>
-
-<th:if test="${isUserSaved == true}">
-    <div style="border: solid 2px">
-        New user: <br/>
-        Name: ${user.firstName} <br/>
-        Typ: ${user.lastName} <br/>
-    </div>
-</th:if>
-
 <div class="container">
     <div th:replace="fragments/header :: 'header'"></div>
 
     <h2>
         <span th::if="${user.isNew}">New </span> User
     </h2>
-    <form  th:action="@{/createUser}"  th:object="${user}" method="post" class="form-horizontal">
+    <form  th:action="@{/createUser}"  th:object="${userDto}" method="post" class="form-horizontal">
         <label class="control-label">First Name</label>
         <div class="controls">
-            <input type="text" th:field="${user.firstName}"/>
+            <input type="text" th:field="${userDto.firstName}"/>
             <span class="help-inline" th:errors="*{firstName}">[error]</span>
         </div>
         <label class="control-label">Last Name</label>
         <div class="controls">
-            <input type="text" th:field="${user.lastName}"/>
+            <input type="text" th:field="${userDto.lastName}"/>
             <span class="help-inline" th:errors="*{lastName}">[error]</span>
         </div>
         <label class="control-label">Login</label>
         <div class="controls">
-            <input type="text" th:field="${user.login}"/>
-            <span class="help-inline" th:errors="${user.login}">[error]</span>
+            <input type="text" th:field="${userDto.login}"/>
+            <span class="help-inline" th:errors="*{login}">[error]</span>
         </div>
         <label class="control-label">Password</label>
         <div class="controls">
-            <input type="password" th:field="${user.password}"/>
-            <span class="help-inline" th:errors="${user.password}">[error]</span>
+            <input type="password" id="pass" th:field="${userDto.password}"/>
+            <span class="help-inline" th:errors="*{password}">[error]</span>
+        </div>
+        <label class="control-label">Confirm password</label>
+        <div class="controls">
+            <input type="password" id="passRepeat" th:field="${userDto.passwordRepeat}"/>
+            <span class="help-inline" th:errors="*{passwordRepeat}">[error]</span>
         </div>
         <label class="control-label">Email</label>
         <div class="controls">
-            <input type="email" th:field="${user.email}"/>
-            <span class="help-inline" th:errors="${user.email}">[error]</span>
-        </div>
-        <label class="control-label">Telephone</label>
-        <div class="controls">
-            <input type="tel" th:field="${user.telephone}"/>
-            <span class="help-inline" th:errors="${user.telephone}">[error]</span>
+            <input type="email" th:field="${userDto.email}"/>
+            <span class="help-inline" th:errors="*{email}">[error]</span>
         </div>
 
         <div class="form-actions">
-            <button th:if="${user.isNew}" type="submit">Add User</button>
-            <button th:unless="${user.isNew}" type="submit">Update User</button>
+            <button class="btn btn-primary btn-md" type="submit" onclick="return Validate()">Add User</button>
         </div>
     </form>
 </div>
@@ -78,5 +68,16 @@
 <table th:replace="fragments/footer :: footer" class="footer">
 
 </table>
+<script type="text/javascript">
+    function Validate() {
+        var password = document.getElementById("pass").value;
+        var confirmPassword = document.getElementById("passRepeat").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>

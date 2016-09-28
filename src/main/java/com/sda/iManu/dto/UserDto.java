@@ -4,12 +4,10 @@ package com.sda.iManu.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 /**
  * Represents customer data.
@@ -22,32 +20,28 @@ public class UserDto {
     @Id
     private String id;
 
-    @NotNull
-    @Min(5)
-    @Max(12)
-    @Indexed(unique = true)
-    private String login;
-
-    @NotNull
-    @Min(5)
-    @Max(12)
-    private String password;
-
-    private boolean isAdmin;
-
-    @NotNull
-    private String email;
-
-    @NotNull
-    @Min(2)
+    @NotEmpty
+    @Length(min = 2, max= 20)
     private String firstName;
 
-    @NotNull
-    @Min(2)
+    @NotEmpty
+    @Length(min = 2, max= 20)
     private String lastName;
 
-    @Min(7)
-    private String telephone;
+    @NotEmpty
+    @Length(min = 6, max= 20)
+    private String login;
+
+    @NotEmpty
+    @Length(min = 6, max= 20)
+    private String password;
+
+    @NotEmpty
+    @Length(min = 6, max= 20)
+    private String passwordRepeat;
+
+    @NotEmpty
+    private String email;
 
     private Boolean isNew;
 

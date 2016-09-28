@@ -4,12 +4,8 @@ package com.sda.iManu.domain;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.mongodb.core.index.Indexed;
 
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 /**
  * Represents customer data.
@@ -34,10 +30,15 @@ public class User {
 
     private String lastName;
 
-    private String telephone;
+    private Boolean isNew() {
+        return getId() != null;
+    }
 
-    private Boolean isNew;
-
-    public User() {
+    public User(final String firstName, final String lastName, final String login, final String password, final String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+        this.email = email;
     }
 }
