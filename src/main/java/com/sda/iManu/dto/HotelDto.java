@@ -13,9 +13,6 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class HotelDto {
 
-    @Id
-    private int id;
-
     @NotNull
     private String name;
 

@@ -27,12 +27,12 @@
     <h2>
         <span th::if="${tour.isNew}">New </span> Tour
     </h2>
-    <form th:action="@{/addTour}" th:object="${tour}" method="post" class="form-horizontal">
+    <form th:action="@{/addTour}" th:object="${tourDto}" method="post" class="form-horizontal">
 
 
         <div class="control-group">
             <label class="control-label">Date</label>
-            <input th:field="*{date}" name="date" type="text" id="datepicker" th:value="date"/>
+            <input th:field="${tourDto.date}" name="date" type="text" id="datepicker" th:value="date"/>
             <span class="help-inline" th:errors="*{date}">[error]</span>
         </div>
         <div class="control-group">
@@ -49,24 +49,34 @@
             </select>
         </div>
         <div class="controls">
+            <label class="control-label">Departure port</label>
+            <input type="text" th:field="${tourDto.departurePort}"/>
+            <span class="help-inline" th:errors="*{departurePort}">[error]</span>
+        </div>
+        <div class="controls">
+            <label class="control-label">Price</label>
+            <input type="text" th:field="${tourDto.price}"/>
+            <span class="help-inline" th:errors="*{price}">[error]</span>
+        </div>
+        <div class="controls">
             <label class="control-label">Duration</label>
-            <input type="text" th:field="*{duration}"/>
+            <input type="text" th:field="${tourDto.duration}"/>
             <span class="help-inline" th:errors="*{duration}">[error]</span>
         </div>
         <div class="controls">
             <label class="control-label">Capacity</label>
-            <input type="text" th:field="*{capacity}"/>
+            <input type="text" th:field="${tourDto.capacity}"/>
             <span class="help-inline" th:errors="*{capacity}">[error]</span>
         </div>
         <div class="controls">
             <label class="control-label">Description</label>
-            <input type="text" th:field="*{description}"/>
+            <input type="text" th:field="${tourDto.description}"/>
             <span class="help-inline" th:errors="*{description}">[error]</span>
         </div>
         <div class="controls">
             <label class="control-label">Hotel</label>
             <select th:field="*{hotel}">
-                <option th:each="h : ${hotels}" th:text="${h}" th:value="${h}"></option>
+                <option th:each="currentHotel : ${hotels}" th:text="${currentHotel}" th:value="${currentHotel}"></option>
             </select>
         </div>
 

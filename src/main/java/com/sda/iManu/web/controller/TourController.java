@@ -1,7 +1,8 @@
 package com.sda.iManu.web.controller;
 
+import com.sda.iManu.converter.TourDtoToTourConverter;
 import com.sda.iManu.domain.Hotel;
-import com.sda.iManu.domain.Tour;
+import com.sda.iManu.dto.TourDto;
 import com.sda.iManu.service.impl.HotelService;
 import com.sda.iManu.service.impl.TourService;
 import org.slf4j.Logger;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collection;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ import java.util.List;
 public class TourController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+    private TourDtoToTourConverter converter = new TourDtoToTourConverter();
 
     @SuppressWarnings("unused")
     @Autowired
@@ -37,17 +39,29 @@ public class TourController {
 
     @RequestMapping(method = RequestMethod.GET, value= "/addTour")
     public ModelAndView createTour() {
+        LOGGER.info("Start");
         List<Hotel> hotels = hotelService.getAll();
         return new ModelAndView("addTour")
-                .addObject("tour", new Tour())
+                .addObject("tourDto", new TourDto())
                 .addObject("hotels", hotels);
     }
 
 
     @RequestMapping(method = RequestMethod.POST, value= "/addTour")
-    public ModelAndView handleNewTour(@ModelAttribute Tour tour, BindingResult result) {
-        tourService.addTour(tour);
-        return createTour();
+    public ModelAndView handleNewTour(@Valid @ModelAttribute TourDto tourDto, BindingResult result) {
+        if (result.hasErrors()) {
+            LOGGER.info("error: {}", result.getAllErrors());
+            return new ModelAndView("error");
+        } else {
+            if (tourService.addTour(converter.convert(tourDto))) {
+                LOGGER.info("tour created: {}", tourDto);
+                List<Hotel> hotels = hotelService.getAll();
+                return new ModelAndView("addTour").addObject("hotels", hotels);
+            } else {
+                LOGGER.info("cannot add tour");
+                return new ModelAndView("error");
+            }
+        }
     }
 
     @InitBinder

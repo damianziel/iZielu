@@ -27,7 +27,6 @@ public class Tour {
 
     private String departurePort;
 
-    @DateTimeFormat (pattern="dd-MM-YYYY")
     private Date date;
 
     private int duration;
@@ -42,6 +41,12 @@ public class Tour {
 
     private Boolean isNew;
 
-    public Tour() {
+    public Tour(final Date date, final int duration, final int capacity, final String description, Hotel hotel, final BigDecimal price) {
+        this.date = date;
+        this.duration = duration;
+        this.capacity = capacity;
+        this.description = description;
+        this.hotel = hotel;
+        this.price = price;
     }
 }

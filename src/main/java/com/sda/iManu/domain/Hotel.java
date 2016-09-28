@@ -14,13 +14,6 @@ public class Hotel {
 
     private String url;
 
-    private Boolean isNew;
-
-    @Override
-    public String toString() {
-        return name.toUpperCase();
-    }
-
     public Hotel() {
     }
 }
