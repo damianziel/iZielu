@@ -44,7 +44,7 @@ public class TourController {
     @RequestMapping(method = RequestMethod.POST, value= "/addTour")
     public ModelAndView handleNewTour(@ModelAttribute Tour tour,   BindingResult result) {
         tourService.addTour(tour);
-        return new ModelAndView("addTour").addObject("isTourSaved", true);
+        return createTour();
 //    }
     }
 }

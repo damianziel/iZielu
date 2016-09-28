@@ -18,7 +18,6 @@ public class UserService implements IUserService {
 
     public boolean addUser(User user) {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        //userRepository.save(new User("Kamil","Lolo","lolcio",new BCryptPasswordEncoder().encode("lolcio123")))
         User savedUser = userRepository.save(user);
         return savedUser != null;
     }
