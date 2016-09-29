@@ -21,66 +21,63 @@
 </head>
 
 <body>
-<div class="container">
-    <div th:replace="fragments/header :: 'header'"></div>
+
+<div th:replace="fragments/header :: 'header'"></div>
 
 
-    <div class="navbar" style="width: 601px;">
-        <div class="navbar-inner">
-            <ul class="nav">
-                <li style="width: 100px;"><a
-                        href="/addTour.html" th:href="@{/addTour}"><i
-                        class="icon-home"></i>Add Tour</a></li>
-                <li style="width: 130px;"><a
-                        href="/addHotel.html" th:href="@{/addHotel}"><i
-                        class="icon-search"></i>Add Hotel</a></li>
-                <li style="width: 140px;"><a
-                        href="/tourList.html" th:href="@{/tourList.html}"><i
-                        class="icon-th-list"></i>List of Tours</a></li>
-                <li style="width: 90px;"><a
-                        href="/exception.html" th:href="@{/oups.html}"
-                        title="trigger a RuntimeException to see how it is handled"><i
-                        class="icon-warning-sign"></i>Error</a></li>
-                <li style="width: 80px;"><a
-                        href="#" th:action="@{/logout}" title="Log Out"><i
-                        class=" icon-logout-sign"></i>Help</a></li>
+<!--<div class="navbar" style="width: 601px;">-->
+    <!--<div class="navbar-inner">-->
+        <!--<ul class="nav">-->
+            <!--<li style="width: 100px;"><a-->
+                    <!--href="/addTour.html" th:href="@{/addTour}"><i-->
+                    <!--class="icon-home"></i>Add Tour</a></li>-->
+            <!--<li style="width: 130px;"><a-->
+                    <!--href="/addHotel.html" th:href="@{/addHotel}"><i-->
+                    <!--class="icon-search"></i>Add Hotel</a></li>-->
+            <!--<li style="width: 140px;"><a-->
+                    <!--href="/tourList.html" th:href="@{/tourList.html}"><i-->
+                    <!--class="icon-th-list"></i>List of Tours</a></li>-->
+            <!--<li style="width: 90px;"><a-->
+                    <!--href="/exception.html" th:href="@{/oups.html}"-->
+                    <!--title="trigger a RuntimeException to see how it is handled"><i-->
+                    <!--class="icon-warning-sign"></i>Error</a></li>-->
+            <!--<li style="width: 80px;"><a-->
+                    <!--href="#" th:action="@{/logout}" title="Log Out"><i-->
+                    <!--class=" icon-logout-sign"></i>Help</a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div th:object=${listOfTours} th:each="currentTour : listOfTours">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Panel heading</div>
+        <div class="panel-body">
+            <ul>
+
+                <li th:text="*{currentTour.duration}" ></li>
+                <li th:value="${currentTour.date}" th:text="date"></li>
+                <li th:text="${currentTour.capacity}" ></li>
+                <li th:text="${currentTour.departurePort}" ></li>
+                <li th:text="${currentTour.hotel}" ></li>
+                <li th:text="${currentTour.price}" ></li>
+                <li th:text="${currentTour.type}" ></li>
+                <li th:text="${currentTour.country}" ></li>
+                <li th:text="${currentTour.description}" ></li>
             </ul>
+        </div>
+        body
+        <!-- Table -->
+        <table class="table">
+            ...
+        </table>
+        <div class="panel-footer">
+            footer
         </div>
     </div>
 
 </div>
 
-
-<h2>Tours</h2>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th style="width: 150px;">Data</th>
-        <th style="width: 200px;">Address</th>
-        <th>City</th>
-        <th>Telephone</th>
-        <th style="width: 100px;">Pets</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each=" : ${selections}">
-        <td>
-            <a href="ownerDetails.html"
-               th:href="@{|/owners/${owner.id}|}"
-               th:text="|${owner.firstName} ${owner.lastName}|">Mary Smith</a>
-        </td>
-        <td th:text="${owner.address}">45, Oxford Street</td>
-        <td th:text="${owner.city}">Cambridge</td>
-        <td th:text="${owner.telephone}">555-555-555</td>
-        <td>
-<span th:each="pet : ${owner.pets}" th:text="${pet.name}" th:remove="tag">
-        Rob&nbsp;
-</span>
-        </td>
-    </tr>
-    </tbody>
-</table>
 
 <table th:replace="fragments/footer :: footer" class="footer">
 

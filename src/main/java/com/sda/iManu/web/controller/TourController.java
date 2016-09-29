@@ -2,6 +2,7 @@ package com.sda.iManu.web.controller;
 
 import com.sda.iManu.converter.TourDtoToTourConverter;
 import com.sda.iManu.domain.Hotel;
+import com.sda.iManu.domain.Tour;
 import com.sda.iManu.dto.TourDto;
 import com.sda.iManu.service.impl.HotelService;
 import com.sda.iManu.service.impl.TourService;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by RENT on 2016-09-22.
@@ -37,7 +40,7 @@ public class TourController {
     private HotelService hotelService;
 
 
-    @RequestMapping(method = RequestMethod.GET, value= "/addTour")
+    @RequestMapping(method = RequestMethod.GET, value = "/addTour")
     public ModelAndView createTour() {
         LOGGER.info("Start");
         List<Hotel> hotels = hotelService.getAll();
@@ -47,7 +50,7 @@ public class TourController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value= "/addTour")
+    @RequestMapping(method = RequestMethod.POST, value = "/addTour")
     public ModelAndView handleNewTour(@Valid @ModelAttribute TourDto tourDto, BindingResult result) {
         if (result.hasErrors()) {
             LOGGER.info("error: {}", result.getAllErrors());
@@ -64,10 +67,21 @@ public class TourController {
         }
     }
 
-    @InitBinder
-    public void setAllowedFields(WebDataBinder dataBinder) {
-        dataBinder.setDisallowedFields("id");
+    @RequestMapping(method = RequestMethod.GET, value = "/tourList")
+    public ModelAndView showAllTours(@ModelAttribute TourDto tourDto) {
+        List<TourDto> listOfTours = tourService
+                .showAllTours()
+                .stream()
+                .map(TourDto::fromTour)
+                .collect(Collectors.toCollection(LinkedList::new));
+        return new ModelAndView("tourList").addObject("listOfTours", listOfTours);
     }
+
+
+//    @InitBinder
+//    public void setAllowedFields(WebDataBinder dataBinder) {
+//        dataBinder.setDisallowedFields("id");
+//    }
 
 //    @RequestMapping(value = "/owners/new", method = RequestMethod.GET)
 //    public String initCreationForm(Model model) {

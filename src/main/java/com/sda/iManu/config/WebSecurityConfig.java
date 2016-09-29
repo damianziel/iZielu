@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/i18n/**",
-                        "/index","/createUser", "/addTour", "/addHotel"
+                        "/index","/createUser", "/addTour", "/addHotel", "/tourList"
                 )
                 .permitAll()
 //                .antMatchers("/addTour", "/addHotel").access("hasRole('ROLE_ADMIN')")

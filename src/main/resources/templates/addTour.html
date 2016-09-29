@@ -48,10 +48,12 @@
                         th:value="${ctr}"></option>
             </select>
         </div>
-        <div class="controls">
-            <label class="control-label">Departure port</label>
-            <input type="text" th:field="${tourDto.departurePort}"/>
-            <span class="help-inline" th:errors="*{departurePort}">[error]</span>
+        <div class="control-group">
+            <label class="control-label">Departure Port</label>
+            <select th:field="*{departurePort}">
+                <option th:each="currentPort : ${T(com.sda.iManu.domain.DeparturePort).values()}" th:text="${currentPort}"
+                        th:value="${currentPort}"></option>
+            </select>
         </div>
         <div class="controls">
             <label class="control-label">Price</label>
@@ -76,7 +78,9 @@
         <div class="controls">
             <label class="control-label">Hotel</label>
             <select th:field="*{hotel}">
-                <option th:each="currentHotel : ${hotels}" th:text="${currentHotel}" th:value="${currentHotel}"></option>
+                <option th:each="currentHotel : ${hotels}"
+                        th:text="${currentHotel}"
+                        th:value="${currentHotel}"></option>
             </select>
         </div>
 

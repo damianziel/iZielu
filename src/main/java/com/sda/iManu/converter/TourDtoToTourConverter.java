@@ -6,19 +6,24 @@ import com.sda.iManu.dto.TourDto;
 /**
  * Created by RENT on 2016-09-28.
  */
-public class TourDtoToTourConverter implements IConverter <TourDto, Tour> {
+public class TourDtoToTourConverter implements IConverter<TourDto, Tour> {
+
+    Tour tour;
 
     @Override
     public Tour convert(TourDto tourDto) {
+        final Tour result = new Tour();
 
-        final Tour result = new Tour (
-                tourDto.getDate(),
-                tourDto.getDuration(),
-                tourDto.getCapacity(),
-                tourDto.getDescription(),
-                tourDto.getHotel(),
-                tourDto.getPrice()
-        );
+        tour.setType(tourDto.getType());
+        tour.setCountry(tourDto.getCountry());
+        tour.setDeparturePort(tourDto.getDeparturePort());
+        tour.setDate(tourDto.getDate());
+        tour.setDuration(tourDto.getDuration());
+        tour.setCapacity(tourDto.getCapacity());
+        tour.setDescription(tourDto.getDescription());
+        tour.setHotel(tourDto.getHotel());
+        tour.setPrice(tourDto.getPrice());
+
         return result;
     }
 }

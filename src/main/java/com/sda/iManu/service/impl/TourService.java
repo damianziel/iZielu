@@ -29,7 +29,7 @@ public class TourService implements ITourService {
     }
 
     @Override
-    public List<Tour> showAllTours(Tour tour) {
+    public List<Tour> showAllTours() {
         return tourRepository.findAll();
     }
 }

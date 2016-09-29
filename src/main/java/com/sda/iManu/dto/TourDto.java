@@ -1,8 +1,6 @@
 package com.sda.iManu.dto;
 
-import com.sda.iManu.domain.Country;
-import com.sda.iManu.domain.Hotel;
-import com.sda.iManu.domain.Type;
+import com.sda.iManu.domain.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,34 +22,49 @@ import java.util.Date;
 @EqualsAndHashCode
 public class TourDto {
 
-    Type type;
-
-    Country country;
-
     @Id
     @NotNull
     private int id;
 
+    Type type;
+
+    Country country;
+
     @NotNull
-    private String departurePort;
+    private DeparturePort departurePort;
 
     @DateTimeFormat (pattern="dd-MM-YYYY")
     private Date date;
 
     @NotNull
     private int duration;
+    {
 
+    }
     @NotNull
     private int capacity;
 
     @NotNull
     private String description;
 
-    private Hotel hotel;
+    private String hotel;
 
     private BigDecimal price;
 
-    @NotNull
-    public TourDto() {
+    public static TourDto fromTour(final Tour tour) {
+        final TourDto result = new TourDto();
+
+        result.setDate(tour.getDate());
+        result.setCountry(tour.getCountry());
+        result.setCapacity(tour.getCapacity());
+        result.setDeparturePort(tour.getDeparturePort());
+        result.setDescription(tour.getDescription());
+        result.setDuration(tour.getDuration());
+        result.setHotel(tour.getHotel());
+        result.setPrice(tour.getPrice());
+        result.setType(tour.getType());
+
+        return result;
     }
+
 }

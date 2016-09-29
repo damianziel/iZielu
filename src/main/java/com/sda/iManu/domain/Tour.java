@@ -1,5 +1,6 @@
 package com.sda.iManu.domain;
 
+import com.sda.iManu.dto.TourDto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,7 @@ public class Tour {
 
     Country country;
 
-    private String departurePort;
+    private DeparturePort departurePort;
 
     private Date date;
 
@@ -35,18 +36,28 @@ public class Tour {
 
     private String description;
 
-    private Hotel hotel;
+    private String hotel;
 
     private BigDecimal price;
 
     private Boolean isNew;
 
-    public Tour(final Date date, final int duration, final int capacity, final String description, Hotel hotel, final BigDecimal price) {
-        this.date = date;
-        this.duration = duration;
-        this.capacity = capacity;
-        this.description = description;
-        this.hotel = hotel;
-        this.price = price;
+    public static Tour fromTourDto(final TourDto tourDto) {
+        final Tour result = new Tour();
+
+        result.setDate(tourDto.getDate());
+        result.setCountry(tourDto.getCountry());
+        result.setCapacity(tourDto.getCapacity());
+        result.setDeparturePort(tourDto.getDeparturePort());
+        result.setDescription(tourDto.getDescription());
+        result.setDuration(tourDto.getDuration());
+        result.setHotel(tourDto.getHotel());
+        result.setPrice(tourDto.getPrice());
+        result.setType(tourDto.getType());
+
+        return result;
+    }
+
+    public Tour() {
     }
 }

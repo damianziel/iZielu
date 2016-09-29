@@ -16,4 +16,8 @@ public class Hotel {
 
     public Hotel() {
     }
+
+    public String toString() {
+        return name;
+    }
 }
