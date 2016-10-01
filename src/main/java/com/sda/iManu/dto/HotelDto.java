@@ -19,8 +19,6 @@ public class HotelDto {
     @NotNull
     private String url;
 
-    private Boolean isNew;
-
     public HotelDto() {
     }
 }

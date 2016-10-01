@@ -5,6 +5,9 @@
 <head>
     <title>Spring Security Example </title>
 
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
     <script type="text/plain" src="/resources/js/jquery-3.1.0.min.js"
             th:src="@{/resources/js/jquery-3.1.0.min.js}"></script>
 
@@ -24,55 +27,64 @@
 
 <div th:replace="fragments/header :: 'header'"></div>
 
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="active"><a href="/addHotel.html">Add Hotel</a></li>
+                <li><a href="/addTour.html">Add Tour</a></li>
+                <li><a href="/tourList.html">List of Tours</a></li>
 
-<!--<div class="navbar" style="width: 601px;">-->
-    <!--<div class="navbar-inner">-->
-        <!--<ul class="nav">-->
-            <!--<li style="width: 100px;"><a-->
-                    <!--href="/addTour.html" th:href="@{/addTour}"><i-->
-                    <!--class="icon-home"></i>Add Tour</a></li>-->
-            <!--<li style="width: 130px;"><a-->
-                    <!--href="/addHotel.html" th:href="@{/addHotel}"><i-->
-                    <!--class="icon-search"></i>Add Hotel</a></li>-->
-            <!--<li style="width: 140px;"><a-->
-                    <!--href="/tourList.html" th:href="@{/tourList.html}"><i-->
-                    <!--class="icon-th-list"></i>List of Tours</a></li>-->
-            <!--<li style="width: 90px;"><a-->
-                    <!--href="/exception.html" th:href="@{/oups.html}"-->
-                    <!--title="trigger a RuntimeException to see how it is handled"><i-->
-                    <!--class="icon-warning-sign"></i>Error</a></li>-->
-            <!--<li style="width: 80px;"><a-->
-                    <!--href="#" th:action="@{/logout}" title="Log Out"><i-->
-                    <!--class=" icon-logout-sign"></i>Help</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
-<!--</div>-->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logour.html">Log out!</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
-<div th:object=${listOfTours} th:each="currentTour : listOfTours">
+<div th:each="currentTour : ${listOfTours}">
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading">Panel heading</div>
+        <div class="panel-heading">
+            <h2 th:text="*{currentTour.country}"></h2>
+        </div>
         <div class="panel-body">
             <ul>
+                <li>
+                    <span> Czas trwania wycieczki: </span>
+                    <span th:text="*{currentTour.duration}"> </span> dni
+                </li>
+                <li>
+                    <span> Dzień wyjazdu:  </span>
+                    <span th:text="*{currentTour.date}"></span>
+                </li>
+                <li>
+                    <span> Ilość miejsc:  </span>
+                    <span th:text="*{currentTour.capacity}"></span>
+                </li>
 
-                <li th:text="*{currentTour.duration}" ></li>
-                <li th:value="${currentTour.date}" th:text="date"></li>
-                <li th:text="${currentTour.capacity}" ></li>
-                <li th:text="${currentTour.departurePort}" ></li>
-                <li th:text="${currentTour.hotel}" ></li>
-                <li th:text="${currentTour.price}" ></li>
-                <li th:text="${currentTour.type}" ></li>
-                <li th:text="${currentTour.country}" ></li>
-                <li th:text="${currentTour.description}" ></li>
+                <li>
+                    <span> Miejsce zakwaterowania:   </span>
+                    <span th:text="*{currentTour.hotel}"></span>
+                </li>
+                <li th:onclick="'seenWhenTrue()'">
+                    <span> Port lotniczy:   </span>
+                    <span th:text="*{currentTour.departurePort}"></span>
+                </li>
+                <li>
+                    <span> Rodzaj transportu: </span>
+                    <span th:text="*{currentTour.type}" id="typeOfTour"></span>
+                </li>
+                <li>
+                    <span> Opis wycieczki:   </span>
+                    <span th:text="*{currentTour.description}"></span>
+                </li>
             </ul>
         </div>
-        body
-        <!-- Table -->
-        <table class="table">
-            ...
-        </table>
         <div class="panel-footer">
-            footer
+            <h3>Incredible low price <span>BUY NOW</span> it's only:</h3>
+            <h3><span th:text="*{currentTour.price}"></span><span> EUR</span></h3>
         </div>
     </div>
 
@@ -82,6 +94,16 @@
 <table th:replace="fragments/footer :: footer" class="footer">
 
 </table>
+<script>
+    function seenWhenTrue() {
+        var typeOfTour = document.getElementById("typeOfTour").innerHTML;
+        var plane = "PLANE";
+        if (typeOfTour == plane) {
+            return true;
+        }
+        return false;
+    }
 
+</script>
 </body>
 </html>

@@ -21,22 +21,29 @@
 </head>
 
 <body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="active"><a href="/addHotel.html">Add Hotel</a></li>
+                <li><a href="/addTour.html">Add Tour</a></li>
+                <li><a href="/tourList.html">List of Tours</a></li>
 
-<th:if test="${isHotelSaved == true}">
-    <div style="border: solid 2px">
-        New hotel: <br/>
-        Hotel id: ${hotel.id} <br/>
-        Hotel name: ${hotel.name} <br/>
-        Hotel website: ${hotel.url} <br/>
-    </div>
-</th:if>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logour.html">Log out!</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
 <div class="container">
     <div th:replace="fragments/header :: 'header'"></div>
 
     <h2>
-        <span th::if="${hotel.isNew}">New </span> Hotel
+        new Hotel
     </h2>
+
     <form th:action="@{/addHotel}" th:object="${hotel}" method="post" class="form-horizontal">
 
         <div class="controls">
@@ -51,8 +58,7 @@
         </div>
 
         <div class="form-actions">
-            <button th:if="${hotel.isNew}" type="submit">Add Hotel</button>
-            <button th:unless="${hotel.isNew}" type="submit">Update Hotel</button>
+            <button type ="submit">Add Hotel</button>
         </div>
     </form>
 </div>

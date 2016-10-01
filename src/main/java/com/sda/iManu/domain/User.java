@@ -34,11 +34,6 @@ public class User {
         return getId() != null;
     }
 
-    public User(final String firstName, final String lastName, final String login, final String password, final String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-        this.email = email;
+    public User() {
     }
 }

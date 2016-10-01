@@ -28,7 +28,7 @@ public class Tour {
 
     private DeparturePort departurePort;
 
-    private Date date;
+    private String date;
 
     private int duration;
 

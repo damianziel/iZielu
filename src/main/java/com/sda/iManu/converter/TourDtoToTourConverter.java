@@ -8,21 +8,19 @@ import com.sda.iManu.dto.TourDto;
  */
 public class TourDtoToTourConverter implements IConverter<TourDto, Tour> {
 
-    Tour tour;
-
     @Override
     public Tour convert(TourDto tourDto) {
         final Tour result = new Tour();
 
-        tour.setType(tourDto.getType());
-        tour.setCountry(tourDto.getCountry());
-        tour.setDeparturePort(tourDto.getDeparturePort());
-        tour.setDate(tourDto.getDate());
-        tour.setDuration(tourDto.getDuration());
-        tour.setCapacity(tourDto.getCapacity());
-        tour.setDescription(tourDto.getDescription());
-        tour.setHotel(tourDto.getHotel());
-        tour.setPrice(tourDto.getPrice());
+        result.setType(tourDto.getType());
+        result.setCountry(tourDto.getCountry());
+        result.setDeparturePort(tourDto.getDeparturePort());
+        result.setDate(tourDto.getDate());
+        result.setDuration(tourDto.getDuration());
+        result.setCapacity(tourDto.getCapacity());
+        result.setDescription(tourDto.getDescription());
+        result.setHotel(tourDto.getHotel());
+        result.setPrice(tourDto.getPrice());
 
         return result;
     }

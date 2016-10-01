@@ -34,7 +34,7 @@ public class TourDto {
     private DeparturePort departurePort;
 
     @DateTimeFormat (pattern="dd-MM-YYYY")
-    private Date date;
+    private String date;
 
     @NotNull
     private int duration;
