@@ -43,6 +43,8 @@ public class UserDto {
     @NotEmpty
     private String email;
 
+    private String role;
+
     private Boolean isNew;
 
     public UserDto() {

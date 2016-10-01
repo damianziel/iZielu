@@ -18,6 +18,7 @@ public class UserDtoToUserConverter
         result.setLogin(userDto.getLogin());
         result.setPassword(userDto.getPassword());
         result.setEmail(userDto.getEmail());
+        result.setRole(userDto.getRole());
 
         return result;
     }

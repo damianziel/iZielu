@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Spring Security Example </title>
@@ -25,69 +25,73 @@
 
 <body>
 
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    to jest wiadomosc dla admina
+</div>
+
 <div th:replace="fragments/header :: 'header'"></div>
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a href="/addHotel.html">Add Hotel</a></li>
+                <li><a href="/addHotel.html">Add Hotel</a></li>
                 <li><a href="/addTour.html">Add Tour</a></li>
-                <li><a href="/tourList.html">List of Tours</a></li>
+                <li class="active"><a href="/tourList.html">List of Tours</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logour.html">Log out!</a></li>
+                <li th:action="@{/logout}"><a href="/login.html">Log out!</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 
-<div th:each="currentTour : ${listOfTours}">
-    <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">
-            <h2 th:text="*{currentTour.country}"></h2>
-        </div>
-        <div class="panel-body">
-            <ul>
-                <li>
-                    <span> Czas trwania wycieczki: </span>
-                    <span th:text="*{currentTour.duration}"> </span> dni
-                </li>
-                <li>
-                    <span> Dzień wyjazdu:  </span>
-                    <span th:text="*{currentTour.date}"></span>
-                </li>
-                <li>
-                    <span> Ilość miejsc:  </span>
-                    <span th:text="*{currentTour.capacity}"></span>
-                </li>
-
-                <li>
-                    <span> Miejsce zakwaterowania:   </span>
-                    <span th:text="*{currentTour.hotel}"></span>
-                </li>
-                <li th:onclick="'seenWhenTrue()'">
-                    <span> Port lotniczy:   </span>
-                    <span th:text="*{currentTour.departurePort}"></span>
-                </li>
-                <li>
-                    <span> Rodzaj transportu: </span>
-                    <span th:text="*{currentTour.type}" id="typeOfTour"></span>
-                </li>
-                <li>
-                    <span> Opis wycieczki:   </span>
-                    <span th:text="*{currentTour.description}"></span>
-                </li>
-            </ul>
-        </div>
-        <div class="panel-footer">
-            <h3>Incredible low price <span>BUY NOW</span> it's only:</h3>
-            <h3><span th:text="*{currentTour.price}"></span><span> EUR</span></h3>
+<div class="container">
+    <div th:each="currentTour : ${listOfTours}">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h2 th:text="*{currentTour.country}"></h2>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li>
+                        <span> Czas trwania wycieczki: </span>
+                        <span th:text="*{currentTour.duration}"> </span> dni
+                    </li>
+                    <li>
+                        <span> Dzień wyjazdu:  </span>
+                        <span th:text="*{currentTour.date}"></span>
+                    </li>
+                    <li>
+                        <span> Ilość miejsc:  </span>
+                        <span th:text="*{currentTour.capacity}"></span>
+                    </li>
+                    <li>
+                        <span> Miejsce zakwaterowania:   </span>
+                        <span th:text="*{currentTour.hotel}"></span>
+                    </li>
+                    <li th:onclick="'seenWhenTrue()'">
+                        <span> Port lotniczy:   </span>
+                        <span th:text="*{currentTour.departurePort}"></span>
+                    </li>
+                    <li>
+                        <span> Rodzaj transportu: </span>
+                        <span th:text="*{currentTour.type}" id="typeOfTour"></span>
+                    </li>
+                    <li>
+                        <span> Opis wycieczki:   </span>
+                        <span th:text="*{currentTour.description}"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer">
+                <h3>Incredible low price <span>BUY NOW</span> it's only:</h3>
+                <h3><span th:text="*{currentTour.price}"></span><span> EUR</span></h3>
+            </div>
         </div>
     </div>
-
 </div>
 
 

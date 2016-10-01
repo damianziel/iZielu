@@ -25,10 +25,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/i18n/**",
-                        "/index","/createUser", "/addTour", "/addHotel", "/tourList"
+                        "/index","/createUser", "/tourList"
                 )
                 .permitAll()
-                //.antMatchers("/addTour", "/addHotel", "/tourList").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/addTour", "/addHotel").access("hasRole('ROLE_ADMIN')")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -37,7 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login");
     }
 
     @Autowired

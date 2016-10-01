@@ -21,25 +21,33 @@
 </head>
 
 <body>
+
+<div th:replace="fragments/header :: 'header'"></div>
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a href="/addHotel.html">Add Hotel</a></li>
-                <li><a href="/addTour.html">Add Tour</a></li>
+                <li><a href="/addHotel.html">Add Hotel</a></li>
+                <li class="active"><a href="/addTour.html">Add Tour</a></li>
                 <li><a href="/tourList.html">List of Tours</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logour.html">Log out!</a></li>
+                <li>
+                    <a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+
+                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                        <input hidden="true" type="submit" value="Sign Out"/>
+                    </form>
+
+
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
 <div class="container">
-    <div th:replace="fragments/header :: 'header'"></div>
-
     <h2>
         <span th::if="${tour.isNew}">New </span> Tour
     </h2>
@@ -67,7 +75,8 @@
         <div class="control-group">
             <label class="control-label">Departure Port</label>
             <select th:field="*{departurePort}">
-                <option th:each="currentPort : ${T(com.sda.iManu.domain.DeparturePort).values()}" th:text="${currentPort}"
+                <option th:each="currentPort : ${T(com.sda.iManu.domain.DeparturePort).values()}"
+                        th:text="${currentPort}"
                         th:value="${currentPort}"></option>
             </select>
         </div>
@@ -101,8 +110,8 @@
         </div>
 
         <div class="form-actions">
-<!--            <button th:if="${tour.isNew}" type="submit">Add Tour</button>
-            <button th:unless="${tour.isNew}" type="submit">Update Tour</button>-->
+            <!--            <button th:if="${tour.isNew}" type="submit">Add Tour</button>
+                        <button th:unless="${tour.isNew}" type="submit">Update Tour</button>-->
             <button type="submit">Add Tour</button>
         </div>
     </form>
@@ -112,9 +121,7 @@
 
 </table>
 <script type="text/javascript">
-  function() {
-    $("#datepicker").datepicker();
-  }
-  </script>
+
+</script>
 </body>
 </html>
