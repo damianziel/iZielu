@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/index","/createUser", "/addTour", "/addHotel", "/tourList"
                 )
                 .permitAll()
-                .antMatchers("/addTour", "/addHotel", ).access("hasRole('ROLE_ADMIN')")
+                //.antMatchers("/addTour", "/addHotel", "/tourList").access("hasRole('ROLE_ADMIN')")
                 .anyRequest()
                 .authenticated()
                 .and()
