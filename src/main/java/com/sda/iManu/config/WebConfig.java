@@ -15,6 +15,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/tourList").setViewName("tourList");
         registry.addViewController("/home").setViewName("home");
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/index").setViewName("index");
@@ -22,7 +23,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/createUser").setViewName("createUser");
         registry.addViewController("/addHotel").setViewName("addHotel");
         registry.addViewController("/addTour").setViewName("addTour");
-//        registry.addViewController("/logout").setViewName("logout");
+
 
     }
 

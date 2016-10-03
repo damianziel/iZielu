@@ -22,14 +22,6 @@ public class SecUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    /**
-     * Methods allows login user. It finds user in repository by login.
-     *
-     * Example of inserting new user to database:
-     * userRepository.save(new User("Kamil","Lolo","lolcio",new BCryptPasswordEncoder().encode("lolcio123")))
-     */
-
-
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         LOGGER.info("Try to login user: {}", username);

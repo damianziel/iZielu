@@ -5,11 +5,8 @@
 <head>
     <title>Spring Security Example </title>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
-    <script type="text/plain" src="/resources/js/jquery-3.1.0.min.js"
-            th:src="@{/resources/js/jquery-3.1.0.min.js}"></script>
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"
+              integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
@@ -25,27 +22,8 @@
 
 <body>
 
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    to jest wiadomosc dla admina
-</div>
-
 <div th:replace="fragments/header :: 'header'"></div>
-
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-left">
-                <li><a href="/addHotel.html">Add Hotel</a></li>
-                <li><a href="/addTour.html">Add Tour</a></li>
-                <li class="active"><a href="/tourList.html">List of Tours</a></li>
-
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li th:action="@{/logout}"><a href="/login.html">Log out!</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+<div th:replace="fragments/navBar :: 'navBar'"></div>
 
 <div class="container">
     <div th:each="currentTour : ${listOfTours}">
@@ -99,13 +77,15 @@
 
 </table>
 <script>
+
     function seenWhenTrue() {
+    debugger;
         var typeOfTour = document.getElementById("typeOfTour").innerHTML;
         var plane = "PLANE";
-        if (typeOfTour == plane) {
-            return true;
+        if (typeOfTour != plane) {
+            return style="display: none";
         }
-        return false;
+        return style="display: block";
     }
 
 </script>

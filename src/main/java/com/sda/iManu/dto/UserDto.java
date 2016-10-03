@@ -1,6 +1,7 @@
 package com.sda.iManu.dto;
 
 
+import com.sda.iManu.domain.Role;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -43,7 +44,7 @@ public class UserDto {
     @NotEmpty
     private String email;
 
-    private String role;
+    private Role role;
 
     private Boolean isNew;
 

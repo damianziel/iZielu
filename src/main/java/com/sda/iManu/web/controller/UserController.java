@@ -50,6 +50,7 @@ public class UserController {
         }
     }
 //      the same but in a different way
+//    just for me
 
 //    @RequestMapping(method = RequestMethod.GET)
 //    public ModelAndView startRegisterProcess(ModelMap model) {
