@@ -26,7 +26,7 @@
 
 <div class="container">
     <h2>
-        <span th::if="${tour.isNew}">New </span> Tour
+        New Tour
     </h2>
     <form th:action="@{/addTour}" th:object="${tourDto}" method="post" class="form-horizontal">
 
@@ -87,8 +87,6 @@
         </div>
 
         <div class="form-actions">
-            <!--            <button th:if="${tour.isNew}" type="submit">Add Tour</button>
-                        <button th:unless="${tour.isNew}" type="submit">Update Tour</button>-->
             <button type="submit">Add Tour</button>
         </div>
     </form>
